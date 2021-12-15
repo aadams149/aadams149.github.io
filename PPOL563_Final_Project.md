@@ -11,9 +11,9 @@ In times of public health crisis, it is essential that officials and science com
 
 The aim of this analysis is to investigate if counties whose public health departments have social media accounts on one or both of two major platforms (Facebook and Twitter) have different outcomes with respect to COVID-19 than counties whose health departments do not have social media accounts. After manually entering the data for this data set, I coded each county (or county-equivalent jurisdiction) as either having a Facebook account for its public health department, a Twitter account, both, or neither. I then located and incorporated data on cases, deaths, completed vaccinations, and first doses administered. Those values were then divided by county population to produce proportions. Figure 1 shows the average rates of each metric, broken down by county health department social media presence. Clicking on one of the legend entries will hide the corresponding line on each subplot, and the slider at the bottom can be used to adjust the range of dates to any interval between January 21, 2020 and December 14, 2021.  
 
-<div style="text-align: center;">
+<p align="center">
   <iframe src="lineplot.html" height="800" width="1200"></iframe>
-</div>
+</p>
 
 (Figure 1. Line plot of COVID-19 outcomes.)
 
