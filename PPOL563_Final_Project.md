@@ -63,6 +63,17 @@ ___
 All data elements in this piece were made in R. The line plot was made using `Plotly` for R, the choropleth map was made using the `tmap` package, and the data table was made using the `DT` package. The data used to make these elements can be found at
 <a>'https://github.com/aadams149/aadams149.github.io/tree/PPOL563-Final-Project'</a>, and the file `visualization_sandbox.R` in that repository contains all the code necessary to replicate these visualizations.
 
+___
+
+The data used to produce this project came from the following sources:
+
+-Data on COVID-19 cases and deaths: [https://github.com/nytimes/covid-19-data](https://github.com/nytimes/covid-19-data)
+-Data on COVID-19 vaccination rates and first doses administered: [https://data.cdc.gov/Vaccinations/COVID-19-Vaccinations-in-the-United-States-County/8xkx-amqh](https://data.cdc.gov/Vaccinations/COVID-19-Vaccinations-in-the-United-States-County/8xkx-amqh)
+-Data on county public health department social media: Collected by Alexander Adams
+-U.S. counties shapefile: U.S. Census Bureau, accessed through `tigris` package for R, modified by Alexander Adams
+
+___
+
 
 Citations:
 
@@ -73,3 +84,4 @@ Gollwitzer, A., Martel, C., Brady, W. J., Parnamets, P., Freedman, I. G., Knowle
 Kettl, D.F. (2020), States Divided: The Implications of American Federalism for COVID-19. Public Admin Rev, 80: 595-602. https://doi.org/10.1111/puar.13243
 
 Morris, D. S. (2021). Polarization, partisanship, and pandemic: The relationship between county-level support for Donald Trump and the spread of Covid-19 during the spring and summer of 2020. Social Science Quarterly, 102(5), 2412-2431.
+___
