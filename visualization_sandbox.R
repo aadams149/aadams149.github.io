@@ -562,7 +562,7 @@ map2 <-
     border.alpha = 0.3,
     alpha = 0.4,
     group = 'County Health Dept. Social Media'
-  ) 
+  ) +
 
   tm_shape(shapefile_districts) +
   tm_polygons(
