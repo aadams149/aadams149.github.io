@@ -441,7 +441,8 @@ map1 <-
     border.col = 'black',
     border.alpha = 0.3,
     alpha = 0.4,
-    group = 'Case Rates by District'
+    group = 'Case Rates by District',
+    palette = '-magma'
   ) +
   tm_shape(shapefile_districts) +
   tm_polygons(
@@ -453,7 +454,8 @@ map1 <-
     border.col = 'black',
     border.alpha = 0.3,
     alpha = 0.4,
-    group = 'Death Rates by District'
+    group = 'Death Rates by District',
+    palette = '-magma'
   ) +
   tm_shape(shapefile_districts) +
   tm_polygons(
@@ -465,7 +467,8 @@ map1 <-
     border.col = 'black',
     border.alpha = 0.3,
     alpha = 0.4,
-    group = 'Vax Rates by District'
+    group = 'Vax Rates by District',
+    palette = '-magma'
   ) +
   tm_shape(shapefile_districts) +
   tm_polygons(
@@ -477,7 +480,8 @@ map1 <-
     border.col = 'black',
     border.alpha = 0.3,
     alpha = 0.4,
-    group = 'Dose 1 Rates by District'
+    group = 'Dose 1 Rates by District',
+    palette = '-magma'
   ) 
 # +
 #   tm_shape(shapefile_counties) +
