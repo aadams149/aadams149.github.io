@@ -20,7 +20,8 @@ Clicking on one of the legend entries will hide the corresponding line on each s
 
 <p align="center">
   <iframe src="lineplot.html" height="800" width="800"></iframe>
-@@ -24,20 +30,40 @@ The aim of this analysis is to investigate if counties whose public health depar
+</p>
+
 
 While all four groups of counties appear similar on Figure 1, there are small but notable gaps between them. Counties with no  health department social media presence consistently have average case and death rates which are higher than those with Facebook or Twitter accounts, and the gap is largest between counties with both Facebook and Twitter pages for their health departments and counties with neither. 
 
@@ -29,7 +30,7 @@ However, some counties whose health departments lack social media presences are 
 Counties which are part of multi-county health districts have been consolidated into those districts. The icon in the top-left corner can be used to select and de-select different layers of the map. For the best viewing experience, select one layer at a time. To see which counties are contained within a multi-county district, select the "Health District Social Media" layer and click on the district.
 
 <p align="center">
-  <iframe src="counties_map.html" height="800" width="800"></iframe>
+  <iframe src="counties_map1.html" height="800" width="800"></iframe>
 </p>
 
 (Figure 2. Choropleth map of COVID-19 metrics across U.S. counties and multi-county health districts.)
@@ -56,7 +57,7 @@ Citations:
 
 Freberg, K. (2012). Intention to comply with crisis messages communicated via social media. Public Relations Review, 38(3), 416-421.
 
-Gollwitzer, A., Martel, C., Brady, W. J., Pärnamets, P., Freedman, I. G., Knowles, E. D., & Van Bavel, J. J. (2020). Partisan differences in physical distancing are linked to health outcomes during the COVID-19 pandemic. Nature human behaviour, 4(11), 1186-1197.
+Gollwitzer, A., Martel, C., Brady, W. J., Parnamets, P., Freedman, I. G., Knowles, E. D., & Van Bavel, J. J. (2020). Partisan differences in physical distancing are linked to health outcomes during the COVID-19 pandemic. Nature human behaviour, 4(11), 1186-1197.
 
 Kettl, D.F. (2020), States Divided: The Implications of American Federalism for COVID-19. Public Admin Rev, 80: 595-602. https://doi.org/10.1111/puar.13243
 
