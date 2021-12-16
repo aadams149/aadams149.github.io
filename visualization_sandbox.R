@@ -273,7 +273,7 @@ bigfig <-
     titleY = TRUE
   ) %>%
   layout(
-    title = 'COVID-19 Metrics by County Health Department Social Media Presence',
+    title = 'COVID-19 and Social Media',
     xaxis = list(
       title = 'Date',
       rangeselector = list(
@@ -501,54 +501,69 @@ map1 <-
 rm(map1)
 
 map2 <-  
-  tm_shape(shapefile_districts) +
-  tm_polygons(
-    col = 'cases_adjusted',
-    id = 'name',
-    popup.vars = c('Jurisdiction: ' = 'name_1',
-                   'Cases, Adjusted for Population: ' = 'cases_adjusted'),
-    title = 'Cases, adjusted for population',
-    border.col = 'black',
-    border.alpha = 0.3,
-    alpha = 0.4,
-    group = 'Case Rates'
-  ) +
-  tm_shape(shapefile_districts) +
-  tm_polygons(
-    col = 'deaths_adjusted',
-    id = 'name',
-    popup.vars = c('Jurisdiction: ' = 'name_1',
-                   'Deaths, Adjusted for Population: ' = 'deaths_adjusted'),
-    title = 'Deaths, adjusted for population',
-    border.col = 'black',
-    border.alpha = 0.3,
-    alpha = 0.4,
-    group = 'Death Rates'
-  ) +
-  tm_shape(shapefile_districts) +
-  tm_polygons(
-    col = 'comp_vax_adjusted',
-    id = 'name',
-    popup.vars = c('Jurisdiction: ' = 'name_1',
-                   'Proportion of County Fully Vaccinated: ' = 'comp_vax_adjusted'),
-    title = 'Proportion Fully Vaccinated',
-    border.col = 'black',
-    border.alpha = 0.3,
-    alpha = 0.4,
-    group = 'Complete Vaccination Rates'
-  ) +
   # tm_shape(shapefile_districts) +
   # tm_polygons(
-  #   col = 'first_dose_adjusted',
+  #   col = 'cases_adjusted',
   #   id = 'name',
   #   popup.vars = c('Jurisdiction: ' = 'name_1',
-  #                  'Proportion of County, 1st Dose: ' = 'first_dose_adjusted'),
-  #   title = 'Proportion, First Dose',
+  #                  'Cases, Adjusted for Population: ' = 'cases_adjusted'),
+  #   title = 'Cases, adjusted for population',
   #   border.col = 'black',
   #   border.alpha = 0.3,
   #   alpha = 0.4,
-  #   group = 'Dose 1 Rates'
+  #   group = 'Case Rates'
   # ) +
+  # tm_shape(shapefile_districts) +
+  # tm_polygons(
+  #   col = 'deaths_adjusted',
+  #   id = 'name',
+  #   popup.vars = c('Jurisdiction: ' = 'name_1',
+  #                  'Deaths, Adjusted for Population: ' = 'deaths_adjusted'),
+  #   title = 'Deaths, adjusted for population',
+  #   border.col = 'black',
+  #   border.alpha = 0.3,
+  #   alpha = 0.4,
+  #   group = 'Death Rates'
+  # ) +
+  # tm_shape(shapefile_districts) +
+  # tm_polygons(
+  #   col = 'comp_vax_adjusted',
+  #   id = 'name',
+  #   popup.vars = c('Jurisdiction: ' = 'name_1',
+  #                  'Proportion of County Fully Vaccinated: ' = 'comp_vax_adjusted'),
+  #   title = 'Proportion Fully Vaccinated',
+  #   border.col = 'black',
+  #   border.alpha = 0.3,
+  #   alpha = 0.4,
+  #   group = 'Complete Vaccination Rates'
+  # ) +
+  # # tm_shape(shapefile_districts) +
+  # # tm_polygons(
+  # #   col = 'first_dose_adjusted',
+  # #   id = 'name',
+  # #   popup.vars = c('Jurisdiction: ' = 'name_1',
+  # #                  'Proportion of County, 1st Dose: ' = 'first_dose_adjusted'),
+  # #   title = 'Proportion, First Dose',
+  # #   border.col = 'black',
+  # #   border.alpha = 0.3,
+  # #   alpha = 0.4,
+  # #   group = 'Dose 1 Rates'
+  # # ) +
+  tm_shape(shapefile_counties) +
+  tm_polygons(
+    col = 'socmed',
+    id = 'name',
+    popup.vars = c('Jurisdiction: ' = 'name_1',
+                   'Social Media: ' = 'socmed',
+                   'Most Recent Tweet: ' = 'Most Recent Tweet'),
+    popup.format = list(html.escape = F),
+    title = 'Social Media',
+    border.col = 'black',
+    border.alpha = 0.3,
+    alpha = 0.4,
+    group = 'County Health Dept. Social Media'
+  ) 
+
   tm_shape(shapefile_districts) +
   tm_polygons(
     col = 'socmed',
@@ -564,4 +579,4 @@ map2 <-
     group = 'Health District Social Media'
   ) 
 
-#tmap_save(map2, 'district_map.html')
+tmap_save(map2, 'district_map.html')
