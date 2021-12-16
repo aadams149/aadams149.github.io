@@ -431,7 +431,7 @@ rm(vax_data)
 #(Maybe not include)
 
 map1 <-
-  tm_shape(shapefile_counties) +
+  tm_shape(shapefile_districts) +
   tm_polygons(
     col = 'cases_adjusted',
     id = 'name',
@@ -441,9 +441,9 @@ map1 <-
     border.col = 'black',
     border.alpha = 0.3,
     alpha = 0.4,
-    group = 'Case Rates by County'
+    group = 'Case Rates by District'
   ) +
-  tm_shape(shapefile_counties) +
+  tm_shape(shapefile_districts) +
   tm_polygons(
     col = 'deaths_adjusted',
     id = 'name',
@@ -453,9 +453,9 @@ map1 <-
     border.col = 'black',
     border.alpha = 0.3,
     alpha = 0.4,
-    group = 'Death Rates by County'
+    group = 'Death Rates by District'
   ) +
-  tm_shape(shapefile_counties) +
+  tm_shape(shapefile_districts) +
   tm_polygons(
     col = 'comp_vax_adjusted',
     id = 'name',
@@ -465,9 +465,9 @@ map1 <-
     border.col = 'black',
     border.alpha = 0.3,
     alpha = 0.4,
-    group = 'Vax Rates by County'
+    group = 'Vax Rates by District'
   ) +
-  tm_shape(shapefile_counties) +
+  tm_shape(shapefile_districts) +
   tm_polygons(
     col = 'first_dose_adjusted',
     id = 'name',
@@ -477,24 +477,25 @@ map1 <-
     border.col = 'black',
     border.alpha = 0.3,
     alpha = 0.4,
-    group = 'Dose 1 Rates by County'
-  ) +
-  tm_shape(shapefile_counties) +
-  tm_polygons(
-    col = 'socmed',
-    id = 'name',
-    popup.vars = c('Jurisdiction: ' = 'name',
-                   'Social Media: ' = 'socmed',
-                   'Most Recent Tweet: ' = 'Most Recent Tweet'),
-    popup.format = list(html.escape = F),
-    title = 'Social Media',
-    border.col = 'black',
-    border.alpha = 0.3,
-    alpha = 0.4,
-    group = 'Health Department Social Media'
+    group = 'Dose 1 Rates by District'
   ) 
+# +
+#   tm_shape(shapefile_counties) +
+#   tm_polygons(
+#     col = 'socmed',
+#     id = 'name',
+#     popup.vars = c('Jurisdiction: ' = 'name',
+#                    'Social Media: ' = 'socmed',
+#                    'Most Recent Tweet: ' = 'Most Recent Tweet'),
+#     popup.format = list(html.escape = F),
+#     title = 'Social Media',
+#     border.col = 'black',
+#     border.alpha = 0.3,
+#     alpha = 0.4,
+#     group = 'Health Department Social Media'
+#   ) 
 
-#tmap_save(map1, 'counties_map.html')
+tmap_save(map1, 'counties_map.html')
 
 
 # map of districts ----------------------------------------------------

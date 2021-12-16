@@ -34,6 +34,12 @@ Counties which are part of multi-county health districts have been consolidated 
 
 (Figure 2. Choropleth map of COVID-19 metrics across U.S. counties and multi-county health districts.)
 
+
+<p align="center">
+  <iframe src="district_map.html" height="800" width="800"></iframe>
+</p>
+
+(Figure 3. Map of health of health department social media across U.S. counties and multi-county health districts.)
 ___
 
 County health departments having social media accounts may have had a small impact on the COVID-19 health outcomes in those counties, but there could be other factors responsible for differential outcomes as well. Arguably the most significant factor in predicting COVID-19 outcomes across the United States is partisanship. Democrats and Republicans have responded to the pandemic in different ways, and even the best public health messaging from trusted local officials may be unable to counteract strongly-signaled partisan stances (Gollwitzer et al., 2020, Morris, 2021). It is also possible that counties whose public health departments have social media accounts are simply wealthier or better-resourced than their counterparts, and the presence of a social media account is merely capturing part of the effect of having a more robust and active local health department (and since local governments are funded by taxes, and Democrats are more likely to support tax increases or generally higher tax rates than Republicans, this too could be a mediator for partisanship). When I set out to begin this project, I expected to find that counties with large populations would be more likely than smaller counties to have social media accounts, but this is largely not the case. Indeed, one of the biggest trends I observed in the course of making the map above is that there is no immediately obvious trend. With respect to social media presences, many major, highly populated counties have health department social media, like Maricopa County, Arizona (Phoenix), Harris County, Texas (Houston), and King County, Washington (Seattle). Others, like Clark County, Nevada (Las Vegas), Bernalillo County, New Mexico (Albuquerque), and Gwinnett County, Georgia (suburb of Atlanta), have neither a Facebook account or a Twitter profile. Additionally, 475 counties (many of which are rural) are in multi-county districts, like Cherry County, Nebraska, which is part of Nebraska's North Central Health District and has a population density of less than 1 person per square mile. 
