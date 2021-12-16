@@ -12,9 +12,17 @@ In times of public health crisis, it is essential that officials and science com
 The aim of this analysis is to investigate if counties whose public health departments have social media accounts on one or both of two major platforms (Facebook and Twitter) have different outcomes with respect to COVID-19 than counties whose health departments do not have social media accounts. After manually entering the data for this data set, I coded each county (or county-equivalent jurisdiction) as either having a Facebook account for its public health department, a Twitter account, both, or neither. I then located and incorporated data on cases, deaths, completed vaccinations, and first doses administered. Those values were then divided by county population to produce proportions. Figure 1 shows the average rates of each metric, broken down by county health department social media presence. Clicking on one of the legend entries will hide the corresponding line on each subplot, and the slider at the bottom can be used to adjust the range of dates to any interval between January 21, 2020 and December 14, 2021.  
 
 <p align="center">
-  <iframe src="lineplot.html" height="800" width="1200"></iframe>
+  <iframe src="lineplot.html" height="800" width="800"></iframe>
 </p>
 
 (Figure 1. Line plot of COVID-19 outcomes.)
 
-While all four groups of counties appear similar on Figure 1, there are small but notable gaps between them. Counties with no  health department social media presence consistenly have average case and death rates which are higher than those with Facebook or Twitter accounts, and the gap is largest between counties with both Facebook and Twitter pages for their health departmens and counties with neither.
+While all four groups of counties appear similar on Figure 1, there are small but notable gaps between them. Counties with no  health department social media presence consistently have average case and death rates which are higher than those with Facebook or Twitter accounts, and the gap is largest between counties with both Facebook and Twitter pages for their health departments and counties with neither. 
+
+However, some counties whose health departments lack social media presences are represented online in other ways. In many parts of the country, particularly in rural states such as Idaho, Nebraska, and Kentucky, groups of adjacent counties are organized into multi-county public health districts, and these multi-county districts often have social media accounts. For the purposes of this project, counties in these organized districts coded as having health department social media accounts, and are included in the relevant groups. The map below shows cumulative COVID-19 cases, deaths, vaccination rates, and 1st dose administration rates for all counties in the United States. 
+
+The table below displays data for all 3,143 counties and county-equivalent jurisdictions in the United States. The column "Tweets During COVID-19" displays the number of tweets a twitter account has posted since the World Health Organization declared COVID-19 a pandemic on March 10, 2020.
+
+<p align="center">
+  <iframe src="data_table.html" height="800" width="800"></iframe>
+</p>

@@ -1,3 +1,4 @@
+library(DT)
 library(plotly)
 library(sf)
 library(tmap)
@@ -38,7 +39,8 @@ counties <-
       facebookYN == 0 &
         twitterYN == 1 ~ "Twitter but no Facebook"
     )
-  )
+  ) %>%
+  rename(tweet_date = date)
 
 population_counties <-
   vroom('co-est2020.csv') %>%
@@ -97,6 +99,7 @@ socmed <-
   counties %>%
   select(
     fips,
+    twitter,
     twitterYN,
     facebookYN,
     socmed
@@ -121,6 +124,9 @@ covid_all <-
     first_dose_adjusted = 
       Administered_Dose1_Recip/population
   )
+
+# data for plotly -----------------------------------------------------
+
 
 covid_mean_data = data.frame()
 for (ii in unique(covid_all$date)){
@@ -157,6 +163,47 @@ for (ii in unique(covid_all$date)){
 covid_mean_data[is.na(covid_mean_data)] <- 0
 
 #write_csv(covid_mean_data, 'covid_mean_data.csv')
+
+
+# Data Table ----------------------------------------------------------
+
+counties1 <-
+  counties %>%
+  left_join(
+    population_counties,
+    by = c('fips',
+           'state_full' = 'STNAME')
+  ) %>%
+  select(
+    'County' = name,
+    'State' = state_full,
+    'District' = district,
+    'Population' = population.y,
+    'Facebook?' = facebookYN,
+    'Twitter?' = twitterYN,
+    'Twitter Account' = twitter,
+    'Tweets During COVID-19' = tweets_COVID
+  ) %>%
+  mutate(
+    `Facebook?` = 
+      case_when(`Facebook?` == 1 ~ 'Yes',
+                `Facebook?` == 0 ~ 'No'),
+    `Twitter?` = 
+      case_when(`Twitter?` == 1 ~ 'Yes',
+                `Twitter?` == 0 ~ 'No'),
+    Population = 
+      as.character(Population),
+    `Tweets During COVID-19` = 
+      as.character(`Tweets During COVID-19`)
+  )
+
+counties1[is.na(counties1)] <- 'NA'
+
+output_table <-
+  DT::datatable(counties1)
+
+#htmlwidgets::saveWidget(output_table, 'data_table.html')
+
 # plotly line graph ---------------------------------------------------
 library(plotly)
 
@@ -258,26 +305,35 @@ bigfig <-
 
 htmlwidgets::saveWidget(as_widget(bigfig), "lineplot.html")
 # tmap ----------------------------------------------------------------
-
+covid_today <-
+  covid_all %>%
+  filter(date == max(date))
 
 district_data = data.frame()
-for(ii in unique(covid_filtered$district)){
+for(ii in unique(covid_today$district)){
   if(!is.na(ii)){
     df_subset <-
-      covid_filtered %>%
+      covid_today %>%
       filter(district == ii)
   
     newrow <-
       data.frame(
-        date = unique(covid_filtered$date)[1],
+        date = unique(covid_today$date)[1],
         county = ii,
         state = unique(df_subset$state)[1],
         fips = shapefile[shapefile$distrct == ii,]$GEOID,
         cases = sum(df_subset$cases),
         deaths = sum(df_subset$deaths),
+        Series_Complete_Yes = sum(df_subset$Series_Complete_Yes),
+        Administered_Dose1_Recip = sum(df_subset$Administered_Dose1_Recip),
         population = sum(df_subset$population),
+        twitter = unique(df_subset$twitter)[1],
+        twitterYN = mean(df_subset$twitterYN),
+        facebookYN = mean(df_subset$facebookYN),
         cases_adjusted = sum(df_subset$cases)/sum(df_subset$population),
         deaths_adjusted = sum(df_subset$deaths)/sum(df_subset$population),
+        comp_vax_adjusted = sum(df_subset$Series_Complete_Yes)/sum(df_subset$population),
+        first_dose_adjusted = sum(df_subset$Administered_Dose1_Recip)/sum(df_subset$population),
         name = ii,
         district = ii
       )
@@ -286,35 +342,93 @@ for(ii in unique(covid_filtered$district)){
   }
 }
 
-district_data = district_data %>%
+district_data1 = district_data %>%
   distinct() %>%
-  drop_na() %>%
-  filter(fips > 99000)
+  filter(fips > 99000) %>%
+  mutate(
+    facebookYN = 
+      round(facebookYN),
+    twitterYN = 
+      round(twitterYN)
+  ) %>%
+  mutate(
+    socmed = case_when(
+      facebookYN == 1 & twitterYN == 1 ~ "Both Facebook and Twitter",
+      facebookYN == 0 &
+        twitterYN == 0 ~ "No Facebook or Twitter",
+      facebookYN == 1 &
+        twitterYN == 0 ~ "Facebook but no Twitter",
+      facebookYN == 0 &
+        twitterYN == 1 ~ "Twitter but no Facebook"
+    )
+  )
 
+covid_today_full = rbind.data.frame(covid_today,
+                                      district_data1)
 
-covid_filtered_all = rbind.data.frame(covid_filtered,
-                                      district_data)
+tweets <-
+  counties %>%
+  select(
+    fips,
+    county = name,
+    tweet_date,
+    twitter,
+    tweet,
+    link,
+    likes_count,
+    retweets_count,
+    replies_count
+  ) %>%
+  mutate(`Most Recent Tweet` =
+              case_when(!is.na(tweet) ~ paste0("<a href = ", link,"/>",county," (",tweet_date,")","</a>"),
+                         is.na(tweet) ~ 'No Available Tweets'))
 
 tmap_mode('view')
 
 shapefile_districts <-
   shapefile %>%
   filter(in_dstr != 1) %>%
-  left_join(covid_filtered_all,
+  left_join(covid_today_full,
             by = c('GEOID' = 'fips',
                    'distrct' = 'district')) %>%
+  left_join(tweets,
+            by = c('GEOID' = 'fips')) %>%
   mutate(name_1 = 
            case_when(is.na(name_1) ~ name,
-                     !is.na(name_1) ~ name_1))
+                     !is.na(name_1) ~ name_1),
+         comp_vax_adjusted =
+           case_when(comp_vax_adjusted >= 1 ~ 1,
+                     comp_vax_adjusted < 1 ~ comp_vax_adjusted),
+         first_dose_adjusted = 
+           case_when(first_dose_adjusted >= 1 ~ 1,
+                     first_dose_adjusted < 1 ~ comp_vax_adjusted)
+         )
 
 shapefile_counties <-
   shapefile %>%
   filter(is_dstr != 1) %>%
-  left_join(covid_filtered_all,
+  left_join(covid_today_full,
             by = c('GEOID' = 'fips',
                    'STNAME' = 'state',
-                   'distrct' = 'district'))
+                   'distrct' = 'district')) %>%
+  left_join(tweets,
+            by = c('GEOID' = 'fips')) %>%
+  mutate(
+         comp_vax_adjusted =
+           case_when(comp_vax_adjusted >= 1 ~ 1,
+                     comp_vax_adjusted < 1 ~ comp_vax_adjusted),
+         first_dose_adjusted = 
+           case_when(first_dose_adjusted >= 1 ~ 1,
+                     first_dose_adjusted < 1 ~ comp_vax_adjusted))
 
+rm(district_data)
+rm(covid)
+rm(covid_all)
+rm(vax_data)
+
+
+# map of counties -----------------------------------------------------
+#(Maybe not include)
 
 map1 <-
   tm_shape(shapefile_counties) +
@@ -329,22 +443,125 @@ map1 <-
     alpha = 0.4,
     group = 'Case Rates by County'
   ) +
+  tm_shape(shapefile_counties) +
+  tm_polygons(
+    col = 'deaths_adjusted',
+    id = 'name',
+    popup.vars = c('Jurisdiction: ' = 'name',
+                   'Deaths, Adjusted for Population: ' = 'deaths_adjusted'),
+    title = 'Deaths, adjusted for population',
+    border.col = 'black',
+    border.alpha = 0.3,
+    alpha = 0.4,
+    group = 'Death Rates by County'
+  ) +
+  tm_shape(shapefile_counties) +
+  tm_polygons(
+    col = 'comp_vax_adjusted',
+    id = 'name',
+    popup.vars = c('Jurisdiction: ' = 'name',
+                   'Proportion of County Fully Vaccinated: ' = 'comp_vax_adjusted'),
+    title = 'Proportion Fully Vaccinated',
+    border.col = 'black',
+    border.alpha = 0.3,
+    alpha = 0.4,
+    group = 'Vax Rates by County'
+  ) +
+  tm_shape(shapefile_counties) +
+  tm_polygons(
+    col = 'first_dose_adjusted',
+    id = 'name',
+    popup.vars = c('Jurisdiction: ' = 'name',
+                   'Proportion of County, 1st Dose: ' = 'first_dose_adjusted'),
+    title = 'Proportion, First Dose',
+    border.col = 'black',
+    border.alpha = 0.3,
+    alpha = 0.4,
+    group = 'Dose 1 Rates by County'
+  ) +
+  tm_shape(shapefile_counties) +
+  tm_polygons(
+    col = 'socmed',
+    id = 'name',
+    popup.vars = c('Jurisdiction: ' = 'name',
+                   'Social Media: ' = 'socmed',
+                   'Most Recent Tweet: ' = 'Most Recent Tweet'),
+    popup.format = list(html.escape = F),
+    title = 'Social Media',
+    border.col = 'black',
+    border.alpha = 0.3,
+    alpha = 0.4,
+    group = 'Health Department Social Media'
+  ) 
+
+#tmap_save(map1, 'counties_map.html')
+
+
+# map of districts ----------------------------------------------------
+rm(map1)
+
+map2 <-  
   tm_shape(shapefile_districts) +
   tm_polygons(
     col = 'cases_adjusted',
-    id = 'NAME',
+    id = 'name',
     popup.vars = c('Jurisdiction: ' = 'name_1',
                    'Cases, Adjusted for Population: ' = 'cases_adjusted'),
     title = 'Cases, adjusted for population',
     border.col = 'black',
     border.alpha = 0.3,
     alpha = 0.4,
-    group = 'Case Rates by Public Health District'
+    group = 'Case Rates'
+  ) +
+  tm_shape(shapefile_districts) +
+  tm_polygons(
+    col = 'deaths_adjusted',
+    id = 'name',
+    popup.vars = c('Jurisdiction: ' = 'name_1',
+                   'Deaths, Adjusted for Population: ' = 'deaths_adjusted'),
+    title = 'Deaths, adjusted for population',
+    border.col = 'black',
+    border.alpha = 0.3,
+    alpha = 0.4,
+    group = 'Death Rates'
+  ) +
+  tm_shape(shapefile_districts) +
+  tm_polygons(
+    col = 'comp_vax_adjusted',
+    id = 'name',
+    popup.vars = c('Jurisdiction: ' = 'name_1',
+                   'Proportion of County Fully Vaccinated: ' = 'comp_vax_adjusted'),
+    title = 'Proportion Fully Vaccinated',
+    border.col = 'black',
+    border.alpha = 0.3,
+    alpha = 0.4,
+    group = 'Complete Vaccination Rates'
+  ) +
+  # tm_shape(shapefile_districts) +
+  # tm_polygons(
+  #   col = 'first_dose_adjusted',
+  #   id = 'name',
+  #   popup.vars = c('Jurisdiction: ' = 'name_1',
+  #                  'Proportion of County, 1st Dose: ' = 'first_dose_adjusted'),
+  #   title = 'Proportion, First Dose',
+  #   border.col = 'black',
+  #   border.alpha = 0.3,
+  #   alpha = 0.4,
+  #   group = 'Dose 1 Rates'
+  # ) +
+  tm_shape(shapefile_districts) +
+  tm_polygons(
+    col = 'socmed',
+    id = 'name',
+    popup.vars = c('Jurisdiction: ' = 'name_1',
+                   'Social Media: ' = 'socmed',
+                   'Most Recent Tweet: ' = 'Most Recent Tweet'),
+    popup.format = list(html.escape = F),
+    title = 'Social Media',
+    border.col = 'black',
+    border.alpha = 0.3,
+    alpha = 0.4,
+    group = 'Health District Social Media'
   ) 
 
-map2 = map1 %>%
-  tmap_leaflet() %>%
-  leaflet::hideGroup("Case Rates by Public Health District")
-
-
-map2
+#tmap_save(map2, 'district_map.html')
