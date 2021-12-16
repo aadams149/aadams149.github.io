@@ -56,7 +56,7 @@ The table below displays data for all 3,143 counties and county-equivalent juris
 ___
 
 All data elements in this piece were made in R. The line plot was made using `Plotly` for R, the choropleth map was made using the `tmap` package, and the data table was made using the `DT` package. The data used to make these elements can be found at
-<a>href='https://github.com/aadams149/aadams149.github.io/tree/PPOL563-Final-Project'</a>, and the file `visualization_sandbox.R` in that repository contains all the code necessary to replicate these visualizations.
+<a>'https://github.com/aadams149/aadams149.github.io/tree/PPOL563-Final-Project'</a>, and the file `visualization_sandbox.R` in that repository contains all the code necessary to replicate these visualizations.
 
 
 Citations:
