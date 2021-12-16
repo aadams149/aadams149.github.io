@@ -68,8 +68,12 @@ ___
 The data used to produce this project came from the following sources:
 
 -Data on COVID-19 cases and deaths: [https://github.com/nytimes/covid-19-data](https://github.com/nytimes/covid-19-data)
--Data on COVID-19 vaccination rates and first doses administered: [https://data.cdc.gov/Vaccinations/COVID-19-Vaccinations-in-the-United-States-County/8xkx-amqh](https://data.cdc.gov/Vaccinations/COVID-19-Vaccinations-in-the-United-States-County/8xkx-amqh)
+
+-Data on COVID-19 vaccination rates and first doses administered:
+[https://data.cdc.gov/Vaccinations/COVID-19-Vaccinations-in-the-United-States-County/8xkx-amqh](https://data.cdc.gov/Vaccinations/COVID-19-Vaccinations-in-the-United-States-County/8xkx-amqh)
+
 -Data on county public health department social media: Collected by Alexander Adams
+
 -U.S. counties shapefile: U.S. Census Bureau, accessed through `tigris` package for R, modified by Alexander Adams
 
 ___
