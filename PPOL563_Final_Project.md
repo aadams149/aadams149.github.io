@@ -2,6 +2,11 @@
 ## Alexander Adams
 ### PPOL563: Data Visualization for Data Science
 #### Final Project
+
+___
+A version of this document hosted on GitHub Pages can be found [here](https://aadams149.github.io/PPOL563_Final_Project).
+___
+
 ---Executive Summary---
 
 National public health messengers have become politicized during the COVID-19 pandemic, creating a vaccuum for local public health messengers to communicate information about the virus and its spread. Surveys of public trust find that Americans trust their local governments more than they trust the federal government. Many local governments have social media accounts on various platforms, in order to reach wider audiences and more effectively reach their citizens. The visualizations presented here indicate that counties whose public health departments have Facebook or Twitter accounts have, on average, lower rates of COVID-19 cases and deaths and higher rates of COVID-19 vaccination than counties whose public health departments do not have Facebook or Twitter accounts.  
