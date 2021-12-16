@@ -34,7 +34,7 @@ Counties which are part of multi-county health districts have been consolidated 
 </p>
 
 (Figure 2. Choropleth map of COVID-19 metrics across U.S. counties and multi-county health districts.)
-
+ 
 
 <p align="center">
   <iframe src="district_map.html" height="800" width="800"></iframe>
