@@ -30,7 +30,7 @@ However, some counties whose health departments lack social media presences are 
 Counties which are part of multi-county health districts have been consolidated into those districts. The icon in the top-left corner can be used to select and de-select different layers of the map. For the best viewing experience, select one layer at a time. To see which counties are contained within a multi-county district, select the "Health District Social Media" layer and click on the district.
 
 <p align="center">
-  <iframe src="counties_map1.html" height="800" width="800"></iframe>
+  <iframe src="counties_map.html" height="800" width="800"></iframe>
 </p>
 
 (Figure 2. Choropleth map of COVID-19 metrics across U.S. counties and multi-county health districts.)
