@@ -6,6 +6,11 @@
 
 #### Final Project
 
+---Executive Summary---
+
+National public health messengers have become politicized during the COVID-19 pandemic, creating a vaccuum for local public health messengers to communicate information about the virus and its spread. Surveys of public trust find that Americans trust their local governments more than they trust the federal government. Many local governments have social media accounts on various platforms, in order to reach wider audiences and more effectively reach their citizens. The visualizations presented here indicate that counties whose public health departments have Facebook or Twitter accounts have, on average, lower rates of COVID-19 cases and deaths and higher rates of COVID-19 vaccination than counties whose public health departments do not have Facebook or Twitter accounts.  
+
+---
 
 In times of public health crisis, it is essential that officials and science communicators are able to reach as many people as possible to inform them of mitigation and prevention measures, research updates, available resources, and new laws regarding individual or organizational activity. The emergence and spread of SARS-CoV-2 (the virus which causes COVID-19) presents an interesting and novel phenomenon; it is the first global pandemic during the social media age. Prior epidemics this century, like SARS in 2002, H1N1 flu in 2009, and Ebola in 2014, either happened when social media platforms were young and not widely used, or were geographically isolated or limited in spread by pathogen-specific factors. Public health communication in the United States faces an additional hurdle. The leader of one of the two major national political parties (and the immediate former president) actively and vocally opposed many of the suggestions offered by top-level health advisors, leading many in the country to become distrustful of government messaging around the virus. The polarization of discourse at the national level around COVID-19 means that local health officials could potentially function as more effective vectors of information. This is because a local health official could be a valued member of one's community, while national figures are inherently several degrees removed from the day-to-day actions and considerations of the average citizen. 
 
@@ -19,10 +24,20 @@ The aim of this analysis is to investigate if counties whose public health depar
 
 While all four groups of counties appear similar on Figure 1, there are small but notable gaps between them. Counties with no  health department social media presence consistently have average case and death rates which are higher than those with Facebook or Twitter accounts, and the gap is largest between counties with both Facebook and Twitter pages for their health departments and counties with neither. 
 
-However, some counties whose health departments lack social media presences are represented online in other ways. In many parts of the country, particularly in rural states such as Idaho, Nebraska, and Kentucky, groups of adjacent counties are organized into multi-county public health districts, and these multi-county districts often have social media accounts. For the purposes of this project, counties in these organized districts coded as having health department social media accounts, and are included in the relevant groups. The map below shows cumulative COVID-19 cases, deaths, vaccination rates, and 1st dose administration rates for all counties in the United States. 
+However, some counties whose health departments lack social media presences are represented online in other ways. In many parts of the country, particularly in rural states such as Idaho, Nebraska, and Kentucky, groups of adjacent counties are organized into multi-county public health districts, and these multi-county districts often have social media accounts. For the purposes of this project, counties in these organized districts coded as having health department social media accounts, and are included in the relevant groups. The map below shows cumulative COVID-19 cases, deaths, and completed vaccination rates for all counties in the United States. (In order to keep the file size manageable, I had to exclude first dose administration rates in this map.) 
+
+Counties which are part of multi-county health districts have been consolidated into those districts. The icon in the top-left corner can be used to select and de-select different layers of the map. For the best viewing experience, select one layer at a time. To see which counties are contained within a multi-county district, select the "Social Media" layer and click on the district.
+
+<p align="center">
+  <iframe src="district_map.html" height="800" width="800"></iframe>
+</p>
+
+(Figure 2. Choropleth map of COVID-19 metrics across U.S. counties and multi-county health districts.)
 
 The table below displays data for all 3,143 counties and county-equivalent jurisdictions in the United States. The column "Tweets During COVID-19" displays the number of tweets a twitter account has posted since the World Health Organization declared COVID-19 a pandemic on March 10, 2020.
 
 <p align="center">
   <iframe src="data_table.html" height="800" width="800"></iframe>
 </p>
+
+All three data elements in this piece were made in R. The line plot was made using `Plotly` for R, the choropleth map was made using the `tmap` package, and the data table was made using the `DT` package.
