@@ -25,7 +25,7 @@ Of the 3,143 counties in the United States, 800 have both Facebook and Twitter a
 Clicking on one of the legend entries will hide the corresponding line on each subplot, and the slider at the bottom can be used to adjust the range of dates to any interval between January 21, 2020 and December 14, 2021.  
 
 <p align="center">
-  <iframe src="lineplot.html" height="800" width="800"></iframe>
+  <iframe src="PPOL563_Final_Project_Files/lineplot.html" height="800" width="800"></iframe>
 </p>
 
 
@@ -36,14 +36,14 @@ However, some counties whose health departments lack social media presences are 
 Counties which are part of multi-county health districts have been consolidated into those districts. The icon in the top-left corner can be used to select and de-select different layers of the map. For the best viewing experience, select one layer at a time. To see which counties are contained within a multi-county district, select the "Health District Social Media" layer and click on the district.
 
 <p align="center">
-  <iframe src="counties_map.html" height="800" width="800"></iframe>
+  <iframe src="PPOL563_Final_Project_Files/counties_map.html" height="800" width="800"></iframe>
 </p>
 
 (Figure 2. Choropleth map of COVID-19 metrics across U.S. counties and multi-county health districts.)
  
 
 <p align="center">
-  <iframe src="district_map.html" height="800" width="800"></iframe>
+  <iframe src="PPOL563_Final_Project_Files/district_map.html" height="800" width="800"></iframe>
 </p>
 
 (Figure 3. Map of health of health department social media across U.S. counties and multi-county health districts.)
@@ -63,7 +63,7 @@ The table below displays data for all 3,143 counties and county-equivalent juris
 ___
 
 All data elements in this piece were made in R. The line plot was made using `Plotly` for R, the choropleth map was made using the `tmap` package, and the data table was made using the `DT` package. The data used to make these elements can be found at
-<a>'https://github.com/aadams149/aadams149.github.io/tree/PPOL563-Final-Project'</a>, and the file `visualization_sandbox.R` in that repository contains all the code necessary to replicate these visualizations.
+<a>'https://github.com/aadams149/aadams149.github.io/PPOL563_Final_Project_Files'</a>, and the file `visualization_sandbox.R` in that repository contains all the code necessary to replicate these visualizations.
 
 ___
 
