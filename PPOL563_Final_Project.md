@@ -57,7 +57,7 @@ Even if a local health department's capacity to influence the public health of i
 The table below displays data for all 3,143 counties and county-equivalent jurisdictions in the United States. The column "Tweets During COVID-19" displays the number of tweets a twitter account has posted since the World Health Organization declared COVID-19 a pandemic on March 10, 2020.
 
 <p align="center">
-  <iframe src="data_table.html" height="800" width="800"></iframe>
+  <iframe src="PPOl563_Final_Project_Files/data_table.html" height="800" width="800"></iframe>
 </p>
 
 ___
