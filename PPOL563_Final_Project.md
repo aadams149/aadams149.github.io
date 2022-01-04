@@ -1,7 +1,3 @@
-layout: page
-title: "PPOL563 Final Project"
-permalink: /PPOL563_Final_Project/
-
 # The Twitter Variant: Visualizing the Relationship between County Public Health Department Social Media Accounts and COVID-19 in the United States
 ## Alexander Adams
 ### PPOL563: Data Visualization for Data Science
