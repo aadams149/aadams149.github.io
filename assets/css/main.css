@@ -2261,11 +2261,44 @@ input, select, textarea {
 		margin-left: -1.125em;
 		padding-left: 0;
 	}
+	
 
 		ul.actions li {
 			padding: 0 0 0 1.125em;
 			vertical-align: middle;
 		}
+		div.dropbtn {
+			padding: 16px;
+			font-size: 16px;
+			border: none;
+		  }
+
+		div.dropdown {
+
+			display: inline-block;
+		  
+			position: relative;
+		  
+		  }
+		div.dropdown-content {
+	
+			display: none;
+		
+			position: absolute;
+		
+			width: 100%;
+		
+			overflow: auto;
+		
+			box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+		
+		}
+		div.dropdown:hover div.dropdown-content {
+	
+			display: block;
+		
+		}
+		
 
 		ul.actions.special {
 			-moz-justify-content: center;
@@ -3314,3 +3347,4 @@ input, select, textarea {
 			}
 
 	}
+	
